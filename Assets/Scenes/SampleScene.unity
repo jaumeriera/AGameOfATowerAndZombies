@@ -938,7 +938,10 @@ MonoBehaviour:
   costText: {fileID: 359871146}
   money: {fileID: 1033693546}
   _settings: {fileID: 11400000, guid: 7f6011d38b373db40abc05a0cd80815c, type: 2}
-  currentBonus: 0
+  currentCostKey: CurrentMoneyCost
+  currentLevelKey: CurrentMoneyLevel
+  currentBonusKey: CurrentMoneyBonus
+  isFree: 0
 --- !u!1 &884767187
 GameObject:
   m_ObjectHideFlags: 0
@@ -986,63 +989,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &988188797
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4367907335602941188, guid: 6cb4dfa23fd29dc439a20631397dc521, type: 3}
-      propertyPath: m_RootOrder
-      value: 13
-      objectReference: {fileID: 0}
-    - target: {fileID: 4367907335602941188, guid: 6cb4dfa23fd29dc439a20631397dc521, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 7.04
-      objectReference: {fileID: 0}
-    - target: {fileID: 4367907335602941188, guid: 6cb4dfa23fd29dc439a20631397dc521, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.88
-      objectReference: {fileID: 0}
-    - target: {fileID: 4367907335602941188, guid: 6cb4dfa23fd29dc439a20631397dc521, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4367907335602941188, guid: 6cb4dfa23fd29dc439a20631397dc521, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4367907335602941188, guid: 6cb4dfa23fd29dc439a20631397dc521, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4367907335602941188, guid: 6cb4dfa23fd29dc439a20631397dc521, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4367907335602941188, guid: 6cb4dfa23fd29dc439a20631397dc521, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4367907335602941188, guid: 6cb4dfa23fd29dc439a20631397dc521, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4367907335602941188, guid: 6cb4dfa23fd29dc439a20631397dc521, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4367907335602941188, guid: 6cb4dfa23fd29dc439a20631397dc521, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4367907335602941190, guid: 6cb4dfa23fd29dc439a20631397dc521, type: 3}
-      propertyPath: m_Name
-      value: Enemy
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 6cb4dfa23fd29dc439a20631397dc521, type: 3}
 --- !u!1 &1033693545
 GameObject:
   m_ObjectHideFlags: 0
@@ -1441,6 +1387,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _settings: {fileID: 11400000, guid: bacf4c5621216a740a7adf79727bb3e9, type: 2}
   spawner: {fileID: 625573398}
+  bonusSpeedKey: 
+  bonusLifeKey: 
+  bonusValueKey: 
+  spawnTimeKey: 
+  quantityKey: 
 --- !u!4 &1361421291
 Transform:
   m_ObjectHideFlags: 0
@@ -1736,8 +1687,12 @@ MonoBehaviour:
   costText: {fileID: 609323401}
   money: {fileID: 1033693546}
   _settings: {fileID: 11400000, guid: c3de09649fba7b24abffaa4c72f76190, type: 2}
-  currentBonus: 0
+  currentCostKey: CurrentFireCost
+  currentLevelKey: CurrentFireLevel
+  currentBonusKey: CurrentFireBonus
+  isFree: 0
   _extendedSettings: {fileID: 11400000, guid: c3de09649fba7b24abffaa4c72f76190, type: 2}
+  currentItemsKey: CurrentFireItems
 --- !u!1 &1735881765
 GameObject:
   m_ObjectHideFlags: 0
@@ -1885,6 +1840,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _settings: {fileID: 11400000, guid: 39cf52b954874e34c8c52db24290fc8a, type: 2}
+  healthKey: 
 --- !u!114 &1735881771
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2222,7 +2178,10 @@ MonoBehaviour:
   costText: {fileID: 191956405}
   money: {fileID: 1033693546}
   _settings: {fileID: 11400000, guid: 8620e32d5cd7b2246beaea527dd74a93, type: 2}
-  currentBonus: 0
+  currentCostKey: CurrentTowerCost
+  currentLevelKey: CurrentTowerLevel
+  currentBonusKey: CurrentTowerBonus
+  isFree: 0
 --- !u!1 &2078242795
 GameObject:
   m_ObjectHideFlags: 0
@@ -2251,14 +2210,14 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2078242795}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: 0.0026743517, w: 0.9999964}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1191572349}
   m_Father: {fileID: 1064682977}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0.306}
   m_AnchorMin: {x: 0.86600006, y: 0.15364687}
   m_AnchorMax: {x: 0.86600006, y: 0.15364687}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -2398,8 +2357,12 @@ MonoBehaviour:
   costText: {fileID: 1191572350}
   money: {fileID: 1033693546}
   _settings: {fileID: 11400000, guid: 86f59a2ad20b6194d93d5bb62abea902, type: 2}
-  currentBonus: 0
+  currentCostKey: CurrentGlueCost
+  currentLevelKey: CurrentGlueLevel
+  currentBonusKey: CurrentGlueBonus
+  isFree: 0
   _extendedSettings: {fileID: 11400000, guid: 86f59a2ad20b6194d93d5bb62abea902, type: 2}
+  currentItemsKey: CurrentGlueItems
 --- !u!1001 &3848735252208978205
 PrefabInstance:
   m_ObjectHideFlags: 0

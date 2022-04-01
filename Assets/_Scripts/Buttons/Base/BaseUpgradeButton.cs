@@ -19,9 +19,13 @@ public class BaseUpgradeButton : MonoBehaviour
 
     public virtual void Start()
     {
-        PlayerPrefs.SetInt(currentCostKey, _settings.startCost);
-        PlayerPrefs.SetInt(currentLevelKey, _settings.startLevel);
-        PlayerPrefs.SetFloat(currentBonusKey, _settings.startBonus);
+        // if keys are not generated create from settings, else take player prefs values
+        if(!PlayerPrefs.HasKey(currentCostKey) || !PlayerPrefs.HasKey(currentLevelKey) || !PlayerPrefs.HasKey(currentBonusKey))
+        {
+            PlayerPrefs.SetInt(currentCostKey, _settings.startCost);
+            PlayerPrefs.SetInt(currentLevelKey, _settings.startLevel);
+            PlayerPrefs.SetFloat(currentBonusKey, _settings.startBonus);
+        }
         if (isFree)
         {
             costText.text = "Free";

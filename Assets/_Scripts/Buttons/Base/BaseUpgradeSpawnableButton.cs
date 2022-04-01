@@ -5,22 +5,25 @@ using UnityEngine;
 public class BaseUpgradeSpawnableButton : BaseUpgradeButton
 {
     [SerializeField] BaseUpgradeButtonSpawnableScriptable _extendedSettings;
-    private int currentItems;
+    public string currentItemsKey;
 
 
     public override void Start()
     {
         base.Start();
-        currentItems = _extendedSettings.startItems;
+        if (!PlayerPrefs.HasKey(currentItemsKey))
+        {
+            PlayerPrefs.SetInt(currentItemsKey, _extendedSettings.startItems);
+        }
     }
 
     protected void UpgradeBonus()
     {
         int currentCost;
-        if (_extendedSettings.maxAtTime > currentItems && PlayerPrefs.GetInt(currentLevelKey) % _extendedSettings.spawnEvery == 0)
+        if (_extendedSettings.maxAtTime > PlayerPrefs.GetInt(currentItemsKey) && PlayerPrefs.GetInt(currentLevelKey) % _extendedSettings.spawnEvery == 0)
         {
             print("spawnItem");
-            currentItems += 1;
+            PlayerPrefs.SetInt(currentItemsKey, PlayerPrefs.GetInt(currentItemsKey) + 1);
             // SpawnNewItem();
         }
         else

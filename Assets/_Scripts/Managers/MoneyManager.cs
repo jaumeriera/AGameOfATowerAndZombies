@@ -5,34 +5,38 @@ using UnityEngine.UI;
 
 public class MoneyManager : MonoBehaviour
 {
-    private int totalMoney;
+    private string moneyKey = "money";
     [SerializeField] Text moneyText;
 
     private void Start()
     {
-        totalMoney = 0;
-        moneyText.text = totalMoney.ToString();
+        if (!PlayerPrefs.HasKey(moneyKey))
+        {
+            PlayerPrefs.SetInt(moneyKey, 0);
+        }
+
+        moneyText.text = PlayerPrefs.GetInt(moneyKey).ToString();
     }
 
     public void AddMoney(int ammount)
     {
-        totalMoney += ammount;
+        PlayerPrefs.SetFloat(moneyKey, PlayerPrefs.GetFloat(moneyKey) + ammount);
         UpdateMoneyText();
     }
 
     public void MinusMoney(int ammount)
     {
-        totalMoney -= ammount;
+        PlayerPrefs.SetFloat(moneyKey, PlayerPrefs.GetFloat(moneyKey) - ammount);
         UpdateMoneyText();
     }
 
     public void UpdateMoneyText()
     {
-        moneyText.text = totalMoney.ToString();
+        moneyText.text = PlayerPrefs.GetInt(moneyKey).ToString();
     }
 
     public bool HaveEnoughMoney(int cost)
     {
-        return cost <= totalMoney;
+        return cost <= PlayerPrefs.GetInt(moneyKey);
     }
 }

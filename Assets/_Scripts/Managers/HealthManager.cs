@@ -3,6 +3,7 @@ using UnityEngine.UI;
 
 public class HealthManager : MonoBehaviour
 {
+    private string healthKey;
     private float maxHealth;
     public float currentHealth;
 
@@ -12,8 +13,13 @@ public class HealthManager : MonoBehaviour
     public event NoHealthAction NoHealth;
 
 
-    public void SetUp(float health)
+    public void SetUp(float health, string key=null)
     {
+        if (key != null)
+        {
+            healthKey = key;
+            PlayerPrefs.SetFloat(key, health);
+        }
         maxHealth = health;
         currentHealth = health;
         lifeBar.transform.localScale = new Vector3(1, 1, 1);
@@ -30,10 +36,13 @@ public class HealthManager : MonoBehaviour
         }
     }
 
-    public void Heal(float healValue)
+    public void Heal()
     {
-        currentHealth += healValue;
-        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+        currentHealth = maxHealth;
+        if(healthKey != null)
+        {
+            PlayerPrefs.SetFloat(healthKey, maxHealth);
+        }
     }
 
     public bool CanHeal()

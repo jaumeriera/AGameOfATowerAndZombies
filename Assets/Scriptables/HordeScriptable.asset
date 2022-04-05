@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: HordeScriptable
   m_EditorClassIdentifier: 
   bonusNextHordeSpeed: 1.1
-  bonusNextHordeLife: 1.1
+  bonusNextHordeLife: 1.2
   bonusNextHordeValue: 1.1
   bonusNextHordeQuantity: 1.1
   decrementSpawnTime: 0.1

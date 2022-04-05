@@ -55,7 +55,24 @@ public class EnemyQueue : MonoBehaviour
         if (GameManager.gameStatus == GameManager.Status.SpawnFinished && QueueEmpty())
         {
             GameManager.gameStatus = GameManager.Status.GettingReward;
-            // TODO Load next view
+            GameManager.GetReward();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         }
     }
 

@@ -12,13 +12,21 @@ public class HealthManager : MonoBehaviour
     public delegate void NoHealthAction();
     public event NoHealthAction NoHealth;
 
+    public static string mustHealPlayerKey = "MustHealPlayer";
+
 
     public void SetUp(float health, string key=null)
     {
         if (key != null)
         {
-            healthKey = key;
-            PlayerPrefs.SetFloat(key, health);
+            if (PlayerPrefs.GetInt(mustHealPlayerKey) == 1)
+            {
+                Heal();
+            } else
+            {
+                healthKey = key;
+                PlayerPrefs.SetFloat(key, health);
+            }
         }
         maxHealth = health;
         currentHealth = health;

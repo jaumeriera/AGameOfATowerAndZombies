@@ -20,13 +20,13 @@ public class MoneyManager : MonoBehaviour
 
     public void AddMoney(int ammount)
     {
-        PlayerPrefs.SetFloat(moneyKey, PlayerPrefs.GetFloat(moneyKey) + ammount);
+        PlayerPrefs.SetInt(moneyKey, PlayerPrefs.GetInt(moneyKey) + ammount);
         UpdateMoneyText();
     }
 
     public void MinusMoney(int ammount)
     {
-        PlayerPrefs.SetFloat(moneyKey, PlayerPrefs.GetFloat(moneyKey) - ammount);
+        PlayerPrefs.SetInt(moneyKey, PlayerPrefs.GetInt(moneyKey) - ammount);
         UpdateMoneyText();
     }
 

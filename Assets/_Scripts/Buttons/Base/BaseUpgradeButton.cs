@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class BaseUpgradeButton : MonoBehaviour
 {
     [SerializeField] protected Text costText;
+    [SerializeField] protected Text levelText;
     [SerializeField] protected MoneyManager money;
     [SerializeField] protected BaseUpgradeButtonScriptable _settings;
 
@@ -33,12 +34,13 @@ public class BaseUpgradeButton : MonoBehaviour
         {
             costText.text = PlayerPrefs.GetInt(currentCostKey).ToString();
         }
+        levelText.text = (PlayerPrefs.GetInt(currentLevelKey) + 1).ToString();
     }
 
     // Update is called once per frame
     void Update()
     {
-        clickable = money.HaveEnoughMoney(PlayerPrefs.GetInt(currentCostKey)) || isFree;
+        clickable = isFree || money.HaveEnoughMoney(PlayerPrefs.GetInt(currentCostKey));
         // TODO change sprite if not active
     }
 
@@ -63,6 +65,7 @@ public class BaseUpgradeButton : MonoBehaviour
         currentCost = Mathf.RoundToInt(_settings.costIncrement * PlayerPrefs.GetInt(currentCostKey));
         PlayerPrefs.SetInt(currentCostKey, currentCost);
         costText.text = currentCost.ToString();
+        levelText.text = (PlayerPrefs.GetInt(currentLevelKey) + 1).ToString();
     }
 
     public float GetCurrentBonus()

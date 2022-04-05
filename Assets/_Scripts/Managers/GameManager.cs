@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -26,6 +27,11 @@ public class GameManager : MonoBehaviour
     public void Die(int ammount)
     {
         money.AddMoney(Mathf.RoundToInt(ammount * moneyUpgradeButton.GetCurrentBonus()));
+    }
+
+    public static void GetReward()
+    {
+        SceneManager.LoadScene(2);
     }
 
 }

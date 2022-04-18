@@ -36,7 +36,7 @@ public class EnemyQueue : MonoBehaviour
         }
         
         // if we dont found any enemy in the queue skip
-        if (enemy==null) { return; }
+        if (enemy==null || enemy.gameObject.active == false) { return; }
 
         enemy.GetComponent<BaseEnemy>().TakeDamage(damage);
         if (enemy.gameObject.active == false)
@@ -52,27 +52,21 @@ public class EnemyQueue : MonoBehaviour
 
     private void Update()
     {
-        if (GameManager.gameStatus == GameManager.Status.SpawnFinished && QueueEmpty())
+
+        if (GameManager.gameStatus == GameManager.Status.SpawnFinished)
         {
-            GameManager.gameStatus = GameManager.Status.GettingReward;
-            GameManager.GetReward();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+            if (!QueueEmpty())
+            {
+                BaseEnemy enemy = enemyQueue.Peek();
+                if (enemy.gameObject.active == false)
+                {
+                    enemyQueue.Dequeue();
+                }
+            } else
+            {
+                GameManager.gameStatus = GameManager.Status.GettingReward;
+                GameManager.GetReward();
+            }
         }
     }
 

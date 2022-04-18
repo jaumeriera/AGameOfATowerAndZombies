@@ -7,16 +7,25 @@ using UnityEngine;
 public class BaseEnemy : PoolableObject
 {
     [SerializeField] BaseEnemyScriptable _settings;
+    [SerializeField] string FireBonusKey;
+    [SerializeField] string GlueBonusKey;
     private int moneyValue;
     private float speed;
     private bool attacking;
+    private AudioSource audio;
     private HealthManager healthManager;
     private GameManager gm;
     private Coroutine currentActivityCoroutine;
     private Animator animator;
+
+    private float previousSpeed;
+    private bool isSlowDown = false;
+
+    private Coroutine burningCoroutine;
     // Start is called before the first frame update
     void Awake()
     {
+        audio = gameObject.GetComponent<AudioSource>();
         healthManager = GetComponent<HealthManager>();
         animator = GetComponent<Animator>();
     }
@@ -49,6 +58,10 @@ public class BaseEnemy : PoolableObject
     private void Die()
     {
         StopCoroutine(currentActivityCoroutine);
+        if(burningCoroutine != null)
+        {
+            StopCoroutine(burningCoroutine);
+        }
         attacking = false;
         gm.Die(moneyValue);
         animator.SetBool("Dies", true);
@@ -62,9 +75,12 @@ public class BaseEnemy : PoolableObject
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        attacking = true;
-        StopCoroutine(currentActivityCoroutine);
-        currentActivityCoroutine = StartCoroutine(AttackCoroutine(collision));
+        if (collision.gameObject.tag == "tower")
+        {
+            attacking = true;
+            StopCoroutine(currentActivityCoroutine);
+            currentActivityCoroutine = StartCoroutine(AttackCoroutine(collision));
+        }
     }
 
     private IEnumerator MoveForward()
@@ -81,9 +97,53 @@ public class BaseEnemy : PoolableObject
         while (true)
         {
             // perform attack
-            print("attack");
+            audio.Play();
             collision.gameObject.GetComponent<HealthManager>().TakeDamage(_settings.enemyDamage);
             yield return new WaitForSeconds(_settings.attackCooldown);
         }
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "fire")
+        {
+            TakeDamage(Time.deltaTime * collision.GetComponent<Fire>().baseDamage * PlayerPrefs.GetFloat(FireBonusKey));
+        }
+        if (collision.gameObject.tag == "glue" & !isSlowDown)
+        {
+            isSlowDown = true;
+            previousSpeed = speed;
+            speed = speed - PlayerPrefs.GetFloat(GlueBonusKey);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (gameObject.active == false) { return; }
+        if (collision.gameObject.tag == "glue")
+        {
+            isSlowDown = false;
+            speed = previousSpeed;
+        }
+        if (collision.gameObject.tag == "fire")
+        {
+            if (burningCoroutine != null)
+            {
+                StopCoroutine(burningCoroutine);
+            }
+            burningCoroutine = StartCoroutine(Burn(collision));
+        }
+    }
+
+    private IEnumerator Burn(Collider2D collision)
+    {
+        float totalTime = 0;
+        while (totalTime < collision.GetComponent<Fire>().burningTime)
+        {
+            TakeDamage(Time.deltaTime * collision.GetComponent<Fire>().baseDamage * PlayerPrefs.GetFloat(FireBonusKey));
+            totalTime += Time.deltaTime;
+            yield return null;
+        }
+        burningCoroutine = null;
     }
 }

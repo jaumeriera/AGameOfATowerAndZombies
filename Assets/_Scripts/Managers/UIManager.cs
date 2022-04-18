@@ -9,6 +9,8 @@ public class UIManager : MonoBehaviour
     // 1 - GamePlay
     // 2 - RewardScene
     // 3 - HowToPlay
+    // 4 - GammeOver
+    // 5 - Upgrades
 
     public void PlayGame()
     {
@@ -29,5 +31,15 @@ public class UIManager : MonoBehaviour
     public void HowToPlay()
     {
         SceneManager.LoadScene(3);
+    }
+
+    public static void GameOver()
+    {
+        SceneManager.LoadScene(4);
+    }
+
+    public static void Upgrades()
+    {
+        SceneManager.LoadScene(5);
     }
 }

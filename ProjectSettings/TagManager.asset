@@ -7,6 +7,9 @@ TagManager:
   - GameManager
   - zombie
   - tower
+  - fire
+  - glue
+  - BackgroundMusic
   layers:
   - Default
   - TransparentFX

@@ -37,8 +37,6 @@ public class SpawnerManager : MonoBehaviour
     private IEnumerator SpawnHordeCoroutine()
     {
         GameManager.gameStatus = GameManager.Status.Spawning;
-        print(spawnedEnemies);
-        print(hordeQuantity);
         while (spawnedEnemies < hordeQuantity)
         {
             SpawnElement();

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MoneyUpgradeButtonScriptable
   m_EditorClassIdentifier: 
   startCost: 25
-  startLevel: 0
+  startLevel: 1
   startBonus: 1
   costIncrement: 1.3
   bonusIncrement: 1.1

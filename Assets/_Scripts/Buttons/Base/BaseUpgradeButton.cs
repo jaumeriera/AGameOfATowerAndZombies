@@ -34,7 +34,7 @@ public class BaseUpgradeButton : MonoBehaviour
         {
             costText.text = PlayerPrefs.GetInt(currentCostKey).ToString();
         }
-        levelText.text = (PlayerPrefs.GetInt(currentLevelKey) + 1).ToString();
+        levelText.text = (PlayerPrefs.GetInt(currentLevelKey)).ToString();
     }
 
     // Update is called once per frame
@@ -65,7 +65,7 @@ public class BaseUpgradeButton : MonoBehaviour
         currentCost = Mathf.RoundToInt(_settings.costIncrement * PlayerPrefs.GetInt(currentCostKey));
         PlayerPrefs.SetInt(currentCostKey, currentCost);
         costText.text = currentCost.ToString();
-        levelText.text = (PlayerPrefs.GetInt(currentLevelKey) + 1).ToString();
+        levelText.text = (PlayerPrefs.GetInt(currentLevelKey)).ToString();
     }
 
     public float GetCurrentBonus()

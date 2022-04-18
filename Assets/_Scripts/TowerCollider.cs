@@ -18,24 +18,22 @@ public class TowerCollider : MonoBehaviour
     {
         if (PlayerPrefs.HasKey(healthKey))
         {
-            InitHealth(PlayerPrefs.GetFloat(healthKey), healthKey);
+            InitHealth(PlayerPrefs.GetFloat(healthKey), healthKey, false);
         }else
         {
-            InitHealth(_settings.health, healthKey);
+            InitHealth(_settings.health, healthKey, true);
         }
     }
 
-    private void InitHealth(float health, string healthKey)
+    private void InitHealth(float health, string healthKey, bool firstIni)
     {
-        healthManager.SetUp(health, healthKey);
+        healthManager.SetUp(health, healthKey, firstIni);
         healthManager.NoHealth += Die;
     }
 
     private void Die()
     {
-        print("die");
-        // Call to game over view
-        return;
+        UIManager.GameOver();
     }
 
 }

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TowerUpgradeButtonScriptable
   m_EditorClassIdentifier: 
   startCost: 15
-  startLevel: 0
+  startLevel: 1
   startBonus: 1
   costIncrement: 1.2
   bonusIncrement: 1.1

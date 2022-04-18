@@ -16,7 +16,7 @@ MonoBehaviour:
   bonusNextHordeLife: 1.2
   bonusNextHordeValue: 1.1
   bonusNextHordeQuantity: 1.1
-  decrementSpawnTime: 0.1
+  decrementSpawnTime: 0
   minSpawnTime: 0.75
   startSpawnTime: 1
   startSpeed: 1

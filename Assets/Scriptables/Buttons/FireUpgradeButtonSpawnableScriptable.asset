@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startCost: 50
   startLevel: 0
-  startBonus: 1
+  startBonus: 3
   costIncrement: 1.25
-  bonusIncrement: 1.1
-  maxAtTime: 5
-  spawnEvery: 25
+  bonusIncrement: 1.35
+  maxAtTime: 4
+  spawnEvery: 10
   startItems: 0
